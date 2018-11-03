@@ -1,0 +1,7 @@
+table{
+      border-collapse: collapse;
+}
+
+td,th{
+      border: 0.1em solid black;
+}
