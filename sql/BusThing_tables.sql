@@ -9,7 +9,7 @@ CREATE TABLE drivers (
 );
 
 CREATE TABLE buses (
-  registration char(7) NOT NULL,
+  registration char(8) NOT NULL,
   make varchar(20) NOT NULL,
   model varchar(30) NOT NULL,
   capacity tinyint UNSIGNED NOT NULL,
@@ -19,13 +19,13 @@ CREATE TABLE buses (
 CREATE TABLE stops (
   stop_id int UNSIGNED NOT NULL AUTO_INCREMENT,
   stop_name varchar(50) NOT NULL,
-  postcode varchar(7) NOT NULL,
+  postcode varchar(8) NOT NULL,
   CONSTRAINT PRIMARY KEY (stop_id)
 );
 
 CREATE TABLE routes (
   route_id int UNSIGNED NOT NULL AUTO_INCREMENT,
-  route_name varchar(20) NOT NULL,
+  route_name varchar(50) NOT NULL,
   total_distance float UNSIGNED NOT NULL,
   expected_duration smallint UNSIGNED NOT NULL,
   fare float UNSIGNED NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE runs (
   run_id int UNSIGNED NOT NULL AUTO_INCREMENT,
   driver_id int UNSIGNED NOT NULL,
   route_id int UNSIGNED NOT NULL,
-  bus_reg char(7) NOT NULL,
+  bus_reg char(8) NOT NULL,
   start_time datetime,
   CONSTRAINT PRIMARY KEY (run_id),
   CONSTRAINT fk__run_drivers__driver_id FOREIGN KEY (driver_id) REFERENCES drivers(driver_id),

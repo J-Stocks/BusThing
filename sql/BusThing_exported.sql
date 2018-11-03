@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2018 at 03:35 PM
+-- Generation Time: Nov 03, 2018 at 07:24 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -29,11 +29,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `buses` (
-  `registration` char(7) NOT NULL,
+  `registration` char(8) NOT NULL,
   `make` varchar(20) NOT NULL,
   `model` varchar(30) NOT NULL,
   `capacity` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `buses`
+--
+
+INSERT INTO `buses` (`registration`, `make`, `model`, `capacity`) VALUES
+('BJ57 TWM', 'Trident 2', 'Dennis', 70);
 
 -- --------------------------------------------------------
 
@@ -47,6 +54,13 @@ CREATE TABLE `drivers` (
   `last_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `drivers`
+--
+
+INSERT INTO `drivers` (`driver_id`, `first_name`, `last_name`) VALUES
+(1, 'John', 'Smith');
+
 -- --------------------------------------------------------
 
 --
@@ -55,11 +69,18 @@ CREATE TABLE `drivers` (
 
 CREATE TABLE `routes` (
   `route_id` int(10) UNSIGNED NOT NULL,
-  `route_name` varchar(20) NOT NULL,
+  `route_name` varchar(50) NOT NULL,
   `total_distance` float UNSIGNED NOT NULL,
   `expected_duration` smallint(5) UNSIGNED NOT NULL,
   `fare` float UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `routes`
+--
+
+INSERT INTO `routes` (`route_id`, `route_name`, `total_distance`, `expected_duration`, `fare`) VALUES
+(1, '184 - Manchester to Huddersfield', 27, 119, 0.1);
 
 -- --------------------------------------------------------
 
@@ -75,6 +96,26 @@ CREATE TABLE `route_stop` (
   `time_offset` smallint(5) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `route_stop`
+--
+
+INSERT INTO `route_stop` (`route_stop_id`, `route_id`, `stop_id`, `stop_number`, `time_offset`) VALUES
+(1, 1, 1, 1, 0),
+(2, 1, 2, 2, 13),
+(3, 1, 3, 3, 9),
+(4, 1, 4, 4, 6),
+(5, 1, 5, 5, 11),
+(6, 1, 6, 6, 11),
+(7, 1, 7, 7, 8),
+(8, 1, 8, 8, 3),
+(9, 1, 9, 9, 9),
+(10, 1, 10, 10, 6),
+(11, 1, 11, 11, 12),
+(12, 1, 12, 12, 8),
+(13, 1, 13, 13, 8),
+(14, 1, 14, 14, 15);
+
 -- --------------------------------------------------------
 
 --
@@ -85,9 +126,16 @@ CREATE TABLE `runs` (
   `run_id` int(10) UNSIGNED NOT NULL,
   `driver_id` int(10) UNSIGNED NOT NULL,
   `route_id` int(10) UNSIGNED NOT NULL,
-  `bus_reg` char(7) NOT NULL,
+  `bus_reg` char(8) NOT NULL,
   `start_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `runs`
+--
+
+INSERT INTO `runs` (`run_id`, `driver_id`, `route_id`, `bus_reg`, `start_time`) VALUES
+(1, 1, 1, 'BJ57 TWM', '2018-12-24 09:28:00');
 
 -- --------------------------------------------------------
 
@@ -98,8 +146,28 @@ CREATE TABLE `runs` (
 CREATE TABLE `stops` (
   `stop_id` int(10) UNSIGNED NOT NULL,
   `stop_name` varchar(50) NOT NULL,
-  `postcode` varchar(7) NOT NULL
+  `postcode` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stops`
+--
+
+INSERT INTO `stops` (`stop_id`, `stop_name`, `postcode`) VALUES
+(1, 'Manchester Piccadilly', 'M1 1RG'),
+(2, 'Newton Heath Dean Lane', 'M40 3AD'),
+(3, 'Hollinwood Mersey Road North', 'M35 9FF'),
+(4, 'Garden Suburb', 'OL8 3BE'),
+(5, 'Oldham Bus Station', 'OL3 5SR'),
+(6, 'Oldham Mumps Bridge', 'OL4 1SY'),
+(7, 'Lees County End', 'OL4 4LY'),
+(8, 'Grotton Station Road', 'OL4 5SF'),
+(9, 'Uppermill', 'OL3 6BF'),
+(10, 'Diggle Sunfield Lane', 'OL3 5PS'),
+(11, 'Marsden Peel Street', 'HD7 6EZ'),
+(12, 'Slaithwaite Star Hotel', 'HD7 5HR'),
+(13, 'Cowlersley', 'HD7 5QZ'),
+(14, 'Huddersfield Bus Station', 'HD1 2JN');
 
 --
 -- Indexes for dumped tables
@@ -154,31 +222,31 @@ ALTER TABLE `stops`
 -- AUTO_INCREMENT for table `drivers`
 --
 ALTER TABLE `drivers`
-  MODIFY `driver_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `driver_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `routes`
 --
 ALTER TABLE `routes`
-  MODIFY `route_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `route_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `route_stop`
 --
 ALTER TABLE `route_stop`
-  MODIFY `route_stop_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `route_stop_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `runs`
 --
 ALTER TABLE `runs`
-  MODIFY `run_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `run_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `stops`
 --
 ALTER TABLE `stops`
-  MODIFY `stop_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `stop_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
