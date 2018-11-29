@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+  <html>
+    <head>
+      <title>Master Page</title>
+      <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+      <link href="../css/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+      <div id="holder">
+        <div class="headerPad"></div>
+        <header>
+          <h1 id="logo"><a href="index.php">BusThing</a></h1>
+          <nav>
+            <ul id="navLinks" class="flexStart">
+              <li><a href="../php/browse_routes.php">Browse Routes</a></li>
+              <li><a href="../php/design.php">Design</a></li>
+            </ul>
+          </nav>
+          <form action="search_routes.php" method="get" id="hearderSearch">
+            <label for="searchString" id="searchLabel">Search:</label>
+            <input type="text" name="searchString" id="search">
+            <input type="submit" name="submitSearch" value="Go">
+          </form>
+        </header>
+        <div class="headerPad"></div>
+        <div id="leftPad"></div>
+        <main></main>
+        <div id="rightPad"></div>
+        <footer>Copyright © 2018 Joshua Stocks U1757754. All rights reserved.</footer>
+      </div>
+    </body>
+  </html>

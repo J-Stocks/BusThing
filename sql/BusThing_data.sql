@@ -1,8 +1,24 @@
 INSERT INTO drivers (driver_id, first_name, last_name) VALUES
-  (NULL, 'John', 'Smith')
+  (NULL, 'John', 'Smith'),
+  (NULL, 'Maryanne', 'Reed'),
+  (NULL, 'Alfreda', 'Kevins'),
+  (NULL, 'Hudson', 'Nicolson'),
+  (NULL, 'Tamika', 'Waldroup'),
+  (NULL, 'Perce', 'Russel'),
+  (NULL, 'Gamal', 'Warner'),
+  (NULL, 'Lena', 'Gilliam'),
+  (NULL, 'Finley', 'Hughes'),
+  (NULL, 'Shakil', 'Newport'),
+  (NULL, 'Dwight', 'Knaggs')
 
-INSERT INTO buses (registration, make, model, capacity) VALUES
-  ('BJ57 TWM', 'Trident 2', 'Dennis', 70)
+
+INSERT INTO icons (icon_id, url, alt_text) VALUES
+  (NULL, '../images/single_decker.svg', 'Single Decker'),
+  (NULL, '../images/double_decker.svg', 'Double Decker')
+
+INSERT INTO buses (registration, make, model, capacity, icon_id) VALUES
+  ('BJ57 TWM', 'Trident 2', 'Dennis', 70, 2),
+  ('MK02 VVG', 'Albion', 'Aberdonian ', 35, 1)
 
 INSERT INTO stops (stop_id, stop_name, postcode) VALUES
   (NULL, 'Manchester Piccadilly', 'M1 1RG'),
@@ -22,6 +38,7 @@ INSERT INTO stops (stop_id, stop_name, postcode) VALUES
 
 INSERT INTO routes (route_id, route_name, total_distance, expected_duration, fare) VALUES
   (NULL, '184 - Manchester to Huddersfield', 27, 119, 0.1)
+  
 
 INSERT INTO route_stop (route_stop_id, route_id, stop_id, stop_number, time_offset) VALUES
   (NULL, 1, 1, 1, 0),
@@ -40,4 +57,54 @@ INSERT INTO route_stop (route_stop_id, route_id, stop_id, stop_number, time_offs
   (NULL, 1, 14, 14, 15)
 
 INSERT INTO runs (run_id, driver_id, route_id, bus_reg, start_time) VALUES
-  (NULL, 1, 1, 'BJ57 TWM', '2018-12-24 09:28:00')
+  (NULL, 1, 1, 'BJ57 TWM', '2018-12-24 09:28:00'),
+  (NULL, 2, 1, 'BJ57 TWM', '2018-12-24 09:58:00'),
+  (NULL, 3, 1, 'BJ57 TWM', '2018-12-24 10:28:00'),
+  (NULL, 4, 1, 'BJ57 TWM', '2018-12-24 10:58:00'),
+  (NULL, 5, 1, 'MK02 VVG', '2018-12-24 11:28:00'),
+  (NULL, 6, 1, 'MK02 VVG', '2018-12-24 11:58:00'),
+  (NULL, 7, 1, 'MK02 VVG', '2018-12-24 12:28:00'),
+  (NULL, 8, 1, 'MK02 VVG', '2018-12-24 12:58:00'),
+  (NULL, 9, 1, 'BJ57 TWM', '2018-12-24 13:28:00'),
+  (NULL, 10, 1, 'BJ57 TWM', '2018-12-24 13:58:00'),
+  (NULL, 11, 1, 'BJ57 TWM', '2018-12-24 14:28:00'),
+  (NULL, 1, 1, 'BJ57 TWM', '2018-12-24 14:58:00'),
+  (NULL, 2, 1, 'MK02 VVG', '2018-12-24 15:28:00'),
+  (NULL, 3, 1, 'MK02 VVG', '2018-12-24 15:58:00'),
+  (NULL, 4, 1, 'MK02 VVG', '2018-12-24 16:28:00'),
+  (NULL, 5, 1, 'BJ57 TWM', '2018-12-24 16:58:00'),
+  (NULL, 6, 1, 'BJ57 TWM', '2018-12-24 17:28:00'),
+  (NULL, 1, 1, 'BJ57 TWM', '2018-12-25 09:28:00'),
+  (NULL, 2, 1, 'BJ57 TWM', '2018-12-25 09:58:00'),
+  (NULL, 3, 1, 'BJ57 TWM', '2018-12-25 10:28:00'),
+  (NULL, 4, 1, 'BJ57 TWM', '2018-12-25 10:58:00'),
+  (NULL, 5, 1, 'MK02 VVG', '2018-12-25 11:28:00'),
+  (NULL, 6, 1, 'MK02 VVG', '2018-12-25 11:58:00'),
+  (NULL, 7, 1, 'MK02 VVG', '2018-12-25 12:28:00'),
+  (NULL, 8, 1, 'MK02 VVG', '2018-12-25 12:58:00'),
+  (NULL, 9, 1, 'BJ57 TWM', '2018-12-25 13:28:00'),
+  (NULL, 10, 1, 'BJ57 TWM', '2018-12-25 13:58:00'),
+  (NULL, 11, 1, 'BJ57 TWM', '2018-12-25 14:28:00'),
+  (NULL, 1, 1, 'BJ57 TWM', '2018-12-25 14:58:00'),
+  (NULL, 2, 1, 'MK02 VVG', '2018-12-25 15:28:00'),
+  (NULL, 3, 1, 'MK02 VVG', '2018-12-25 15:58:00'),
+  (NULL, 4, 1, 'MK02 VVG', '2018-12-25 16:28:00'),
+  (NULL, 5, 1, 'BJ57 TWM', '2018-12-25 16:58:00'),
+  (NULL, 6, 1, 'BJ57 TWM', '2018-12-25 17:28:00'),
+  (NULL, 1, 1, 'BJ57 TWM', '2018-12-26 09:28:00'),
+  (NULL, 2, 1, 'BJ57 TWM', '2018-12-26 09:58:00'),
+  (NULL, 3, 1, 'BJ57 TWM', '2018-12-26 10:28:00'),
+  (NULL, 4, 1, 'BJ57 TWM', '2018-12-26 10:58:00'),
+  (NULL, 5, 1, 'MK02 VVG', '2018-12-26 11:28:00'),
+  (NULL, 6, 1, 'MK02 VVG', '2018-12-26 11:58:00'),
+  (NULL, 7, 1, 'MK02 VVG', '2018-12-26 12:28:00'),
+  (NULL, 8, 1, 'MK02 VVG', '2018-12-26 12:58:00'),
+  (NULL, 9, 1, 'BJ57 TWM', '2018-12-26 13:28:00'),
+  (NULL, 10, 1, 'BJ57 TWM', '2018-12-26 13:58:00'),
+  (NULL, 11, 1, 'BJ57 TWM', '2018-12-26 14:28:00'),
+  (NULL, 1, 1, 'BJ57 TWM', '2018-12-26 14:58:00'),
+  (NULL, 2, 1, 'MK02 VVG', '2018-12-26 15:28:00'),
+  (NULL, 3, 1, 'MK02 VVG', '2018-12-26 15:58:00'),
+  (NULL, 4, 1, 'MK02 VVG', '2018-12-26 16:28:00'),
+  (NULL, 5, 1, 'BJ57 TWM', '2018-12-26 16:58:00'),
+  (NULL, 6, 1, 'BJ57 TWM', '2018-12-26 17:28:00')

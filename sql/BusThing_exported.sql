@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2018 at 07:24 PM
+-- Generation Time: Nov 28, 2018 at 11:32 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -32,15 +32,16 @@ CREATE TABLE `buses` (
   `registration` char(8) NOT NULL,
   `make` varchar(20) NOT NULL,
   `model` varchar(30) NOT NULL,
-  `capacity` tinyint(3) UNSIGNED NOT NULL
+  `capacity` tinyint(3) UNSIGNED NOT NULL,
+  `icon_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `buses`
 --
 
-INSERT INTO `buses` (`registration`, `make`, `model`, `capacity`) VALUES
-('BJ57 TWM', 'Trident 2', 'Dennis', 70);
+INSERT INTO `buses` (`registration`, `make`, `model`, `capacity`, `icon_id`) VALUES
+('BJ57 TWM', 'Trident 2', 'Dennis', 70, 2);
 
 -- --------------------------------------------------------
 
@@ -60,6 +61,26 @@ CREATE TABLE `drivers` (
 
 INSERT INTO `drivers` (`driver_id`, `first_name`, `last_name`) VALUES
 (1, 'John', 'Smith');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `icons`
+--
+
+CREATE TABLE `icons` (
+  `icon_id` int(10) UNSIGNED NOT NULL,
+  `url` varchar(150) NOT NULL,
+  `alt_text` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `icons`
+--
+
+INSERT INTO `icons` (`icon_id`, `url`, `alt_text`) VALUES
+(1, '../images/single_decker.svg', 'Single Decker'),
+(2, '../images/double_decker.svg', 'Double Decker');
 
 -- --------------------------------------------------------
 
@@ -177,13 +198,20 @@ INSERT INTO `stops` (`stop_id`, `stop_name`, `postcode`) VALUES
 -- Indexes for table `buses`
 --
 ALTER TABLE `buses`
-  ADD PRIMARY KEY (`registration`);
+  ADD PRIMARY KEY (`registration`),
+  ADD KEY `fk__buses_icons__icon_id` (`icon_id`);
 
 --
 -- Indexes for table `drivers`
 --
 ALTER TABLE `drivers`
   ADD PRIMARY KEY (`driver_id`);
+
+--
+-- Indexes for table `icons`
+--
+ALTER TABLE `icons`
+  ADD PRIMARY KEY (`icon_id`);
 
 --
 -- Indexes for table `routes`
@@ -206,7 +234,7 @@ ALTER TABLE `runs`
   ADD PRIMARY KEY (`run_id`),
   ADD KEY `fk__run_drivers__driver_id` (`driver_id`),
   ADD KEY `fk__run_routes__route_id` (`route_id`),
-  ADD KEY `fl__run_buses__bus_reg` (`bus_reg`);
+  ADD KEY `fk__run_buses__bus_reg` (`bus_reg`);
 
 --
 -- Indexes for table `stops`
@@ -223,6 +251,12 @@ ALTER TABLE `stops`
 --
 ALTER TABLE `drivers`
   MODIFY `driver_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `icons`
+--
+ALTER TABLE `icons`
+  MODIFY `icon_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `routes`
@@ -253,6 +287,12 @@ ALTER TABLE `stops`
 --
 
 --
+-- Constraints for table `buses`
+--
+ALTER TABLE `buses`
+  ADD CONSTRAINT `fk__buses_icons__icon_id` FOREIGN KEY (`icon_id`) REFERENCES `icons` (`icon_id`);
+
+--
 -- Constraints for table `route_stop`
 --
 ALTER TABLE `route_stop`
@@ -263,9 +303,9 @@ ALTER TABLE `route_stop`
 -- Constraints for table `runs`
 --
 ALTER TABLE `runs`
+  ADD CONSTRAINT `fk__run_buses__bus_reg` FOREIGN KEY (`bus_reg`) REFERENCES `buses` (`registration`),
   ADD CONSTRAINT `fk__run_drivers__driver_id` FOREIGN KEY (`driver_id`) REFERENCES `drivers` (`driver_id`),
-  ADD CONSTRAINT `fk__run_routes__route_id` FOREIGN KEY (`route_id`) REFERENCES `routes` (`route_id`),
-  ADD CONSTRAINT `fl__run_buses__bus_reg` FOREIGN KEY (`bus_reg`) REFERENCES `buses` (`registration`);
+  ADD CONSTRAINT `fk__run_routes__route_id` FOREIGN KEY (`route_id`) REFERENCES `routes` (`route_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
