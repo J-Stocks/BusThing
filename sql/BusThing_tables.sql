@@ -8,12 +8,21 @@ CREATE TABLE drivers (
   CONSTRAINT PRIMARY KEY (driver_id)
 );
 
+CREATE TABLE icons (
+  icon_id int UNSIGNED NOT NULL AUTO_INCREMENT,
+  url varchar(150) NOT NULL,
+  alt_text text,
+  CONSTRAINT PRIMARY KEY (icon_id)
+);
+
 CREATE TABLE buses (
   registration char(8) NOT NULL,
   make varchar(20) NOT NULL,
   model varchar(30) NOT NULL,
   capacity tinyint UNSIGNED NOT NULL,
-  CONSTRAINT PRIMARY KEY (registration)
+  icon_id int UNSIGNED,
+  CONSTRAINT PRIMARY KEY (registration),
+  CONSTRAINT fk__buses_icons__icon_id FOREIGN KEY (icon_id) REFERENCES icons(icon_id)
 );
 
 CREATE TABLE stops (
@@ -52,5 +61,5 @@ CREATE TABLE runs (
   CONSTRAINT PRIMARY KEY (run_id),
   CONSTRAINT fk__run_drivers__driver_id FOREIGN KEY (driver_id) REFERENCES drivers(driver_id),
   CONSTRAINT fk__run_routes__route_id FOREIGN KEY (route_id) REFERENCES routes(route_id),
-  CONSTRAINT fl__run_buses__bus_reg FOREIGN KEY (bus_reg) REFERENCES buses(registration)
+  CONSTRAINT fk__run_buses__bus_reg FOREIGN KEY (bus_reg) REFERENCES buses(registration)
 );
