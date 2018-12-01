@@ -80,6 +80,8 @@
   $route_stopColumnNames = getTableColumnNames("route_stop");
   $runsData = getTableData("runs");
   $runsColumnNames = getTableColumnNames("runs");
+  $iconsData = getTableData("icons");
+  $iconsColumnNames = getTableColumnNames("icons");
 
 // Main page html begins here.
 ?>
@@ -104,7 +106,7 @@
           </nav>
           <form action="index.php" method="get" id="hearderSearch">
             <label for="searchString" id="searchLabel">Search:</label>
-            <input type="text" name="searchString" id="search">
+            <input type="text" name="searchString" id="searchString">
             <input type="submit" name="submitSearch" value="Go">
           </form>
         </header>
@@ -117,14 +119,14 @@
           <img src="../images/data_model.png" alt="BusThing database physical data model.">
           <h2>Database Tables</h2>
 <?php
-
+  arrayToTable($driversData, $driversColumnNames, "drivers Table");
+  arrayToTable($busesData, $busesColumnNames, "buses Table");
+  arrayToTable($iconsData, $iconsColumnNames, "icons Table");
+  arrayToTable($stopsData, $stopsColumnNames, "stops Table");
+  arrayToTable($routesData, $routesColumnNames, "routes Table");
+  arrayToTable($route_stopData, $route_stopColumnNames, "route_stop Table");
+  arrayToTable($runsData, $runsColumnNames, "runs Table");
 ?>
-          <?php arrayToTable($driversData, $driversColumnNames, "Drivers Table") ?>
-          <?php arrayToTable($busesData, $busesColumnNames, "Buses Table") ?>
-          <?php arrayToTable($stopsData, $stopsColumnNames, "Stops Table") ?>
-          <?php arrayToTable($routesData, $routesColumnNames, "Routes Table") ?>
-          <?php arrayToTable($route_stopData, $route_stopColumnNames, "route_stop Table") ?>
-          <?php arrayToTable($runsData, $runsColumnNames, "Runs Table") ?>
         </main>
         <div id="rightPad"></div>
         <footer>Copyright © 2018 Joshua Stocks U1757754. All rights reserved.</footer>

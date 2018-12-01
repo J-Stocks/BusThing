@@ -52,7 +52,8 @@
       $results = $conn->query($userQuery);
       $routesToShow = $results->fetchAll();
       $conn = NULL;
-      if (count($routesToShow) > 0) {
+      $resultsCount = count($routesToShow);
+      if ($resultsCount > 0) {
         $pageVersion = 1;
       } else {
         $pageVersion = 2;
@@ -94,7 +95,7 @@
           </nav>
           <form action="index.php" method="get" id="hearderSearch">
             <label for="searchString" id="searchLabel">Search:</label>
-            <input type="text" name="searchString" id="search">
+            <input type="text" name="searchString" id="searchString">
             <input type="submit" name="submitSearch" value="Go">
           </form>
         </header>
@@ -108,7 +109,11 @@
       echo "<h2>Welcome to BusThing</h2>";
       break;
     case 1: //Search Results
-      echo "<h2>Search Results</h2>";
+      if ($resultsCount === 1) {
+        echo "<h2>Your search found {$resultsCount} route.</h2>";
+      } else {
+        echo "<h2>Your search found {$resultsCount} routes.</h2>";
+      }
       echo "<ul id='resultsList'>";
       foreach ($routesToShow as $route) {
         echo "<li><a href='details.php?route_id={$route["route_id"]}'>{$route["route_name"]}</a></li>";

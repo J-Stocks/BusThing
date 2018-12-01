@@ -68,7 +68,7 @@
     JOIN routes ON route_stop.route_id = routes.route_id WHERE stops.stop_id IN
     (SELECT stops.stop_id FROM routes INNER JOIN route_stop ON routes.route_id =
     route_stop.route_id INNER JOIN stops ON route_stop.stop_id = stops.stop_id
-    WHERE routes.route_id = {$routeId}) AND routes.route_id <> {$routeId} LIMIT 5";
+    WHERE routes.route_id = {$routeId}) AND routes.route_id <> {$routeId} LIMIT 6";
   $resultsRelatedRoutes = $conn->query($queryRelatedRoutes);
   $relatedRoutes = $resultsRelatedRoutes->fetchAll();
 
@@ -122,7 +122,7 @@
           </nav>
           <form action="index.php" method="get" id="hearderSearch">
             <label for="searchString" id="searchLabel">Search:</label>
-            <input type="text" name="searchString" id="search">
+            <input type="text" name="searchString" id="searchString">
             <input type="submit" name="submitSearch" value="Go">
           </form>
         </header>
@@ -163,7 +163,7 @@
                   <td>Bus Type</td>
 <?php
   for ($i=0; $i < $runsToShow; $i++) {
-    echo "<td><img src='{$busIcons[$i]['url']}' alt='{$busIcons[$i]['alt_text']}'</td>";
+    echo "<td><img src='{$busIcons[$i]['url']}' alt='{$busIcons[$i]['alt_text']}'></td>";
   }
 ?>
                 </tr>
@@ -193,7 +193,6 @@
   echo "</p>";
 ?>
             </div>
-            <div>
 <?php
   if (count($relatedRoutes) > 0) {
 ?>
